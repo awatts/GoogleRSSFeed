@@ -66,11 +66,14 @@ var FeedItem = React.createClass({
             <li>
                 <span class="post-meta">{this.props.data.publishedDate}} by {this.props.data.author}</span>
                 <h3><a class="post-link" href="{this.props.data.link}">{this.props.data.title}</a></h3>
-                <div class="post-content">{this.props.data.content}</div>
+                <div class="post-content" dangerouslySetInnerHTML={createMarkup(this.props.data.content)} />
             </li>
         );
     }
 });
+
+function createMarkup(content) { return {__html: content}; };
+        
 
 ReactDOM.render(
   <RSSFeed url='https://hlplab.wordpress.com/feed/atom/' />,
