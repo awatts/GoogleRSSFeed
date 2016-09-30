@@ -12,7 +12,6 @@ var RSSFeed = React.createClass({
         };
     },
     componentDidMount: function() {
-        console.log('Entered componentDidMount');
         $.ajax({
             url: 'https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=10&callback=?&q=' + encodeURIComponent(this.props.url),
             dataType: 'json',
@@ -30,10 +29,10 @@ var RSSFeed = React.createClass({
             <div class="large-12 columns">
                     <div class="row">
                         <div class="large-9 columns">
-                            <h1 class="page-heading"><a href="{this.state.feed.link}">{this.state.feed.title}</a></h1>
+                            <h1 class="page-heading"><a href={this.state.feed.link}>{this.state.feed.title}</a></h1>
                         </div>
                         <div class="large-3 columns">
-                            <a href="{this.state.feed.feedUrl}" class="rss"><i class="fa fa-rss" aria-hidden="true"></i></a>
+                            <a href={this.state.feed.feedUrl} class="rss">RSS&nbsp;<i class="fa fa-rss"></i></a>
                         </div>
                     </div>
                     <div class="row">
@@ -64,8 +63,8 @@ var FeedItem = React.createClass({
     render: function() {
         return(
             <li>
-                <span class="post-meta">{this.props.data.publishedDate}} by {this.props.data.author}</span>
-                <h3><a class="post-link" href="{this.props.data.link}">{this.props.data.title}</a></h3>
+                <span class="post-meta">{this.props.data.publishedDate} by {this.props.data.author}</span>
+                <h3><a class="post-link" href={this.props.data.link}>{this.props.data.title}</a></h3>
                 <div class="post-content" dangerouslySetInnerHTML={createMarkup(this.props.data.content)} />
             </li>
         );
